@@ -1,0 +1,76 @@
+spring:
+  profiles:
+    active: qa
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile:
+      - "dev"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: javadev
+    url: jdbc:postgresql://localhost:5432/springweb
+    username: javadev
+  h2:
+    console:
+      enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+  message: '"Welcome to SpringBoot tutorial from CodeBuffer - DEV"'
+  
+---
+
+spring:
+  config:
+    activate:
+      on-profile:
+      - "qa"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: javadev
+    url: jdbc:postgresql://localhost:5432/springweb_qa
+    username: javadev
+  h2:
+    console:
+      enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"     
+welcome:
+  message: '"Welcome to SpringBoot tutorial from CodeBuffer - QA"'
+  
+---
+
+spring:
+  config:
+    activate:
+      on-profile:
+      - "prod"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: javadev
+    url: jdbc:postgresql://localhost:5432/springweb_prod
+    username: javadev
+  h2:
+    console:
+      enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+      
+welcome:
+  message: '"Welcome to SpringBoot tutorial from CodeBuffer - PROD"'
